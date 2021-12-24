@@ -1,0 +1,5 @@
+mqtt:
+  url: tcp://9.134.211.128:1883
+  username: admin
+  password: public
+  clientId: mqtt-sender

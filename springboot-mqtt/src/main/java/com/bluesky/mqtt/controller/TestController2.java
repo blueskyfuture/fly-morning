@@ -1,24 +1,19 @@
 package com.bluesky.mqtt.controller;
 
-import com.bluesky.mqtt.config.MqttTemplate;
+import com.bluesky.mqtt_.config2.MqttGateway;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
 
-@RestController
-public class TestController {
+/**
+ * 对应config2
+ */
+//@RestController
+public class TestController2 {
 
     @Autowired
-    private MqttTemplate mqttSender;
-
-    @RequestMapping("/send")
-    private String send(@RequestParam String data){
-        mqttSender.send(data);
-        return ""+System.currentTimeMillis();
-    }
-
+    private MqttGateway mqttSender;
 
     /**
      * 发送自定义消息内容，且指定主题
@@ -26,7 +21,7 @@ public class TestController {
       */
     @RequestMapping("/test2/{topic}/{data}")
     public String test2(@PathVariable("topic") String topic, @PathVariable("data") String data) {
-        mqttSender.sendToTopic(topic, data);
+        mqttSender.sendToMqtt(topic, data);
         return ""+System.currentTimeMillis();
     }
 
@@ -36,7 +31,7 @@ public class TestController {
       */
     @RequestMapping("/test3")
     public String test3(@RequestParam("topic") String topic, @RequestParam("data") String data) {
-        mqttSender.sendToTopic(topic, data);
+        mqttSender.sendToMqtt(topic, data);
         return ""+System.currentTimeMillis();
     }
 }

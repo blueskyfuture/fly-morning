@@ -6,10 +6,11 @@ import org.springframework.stereotype.Component;
 
 @Data
 @Component
-@ConfigurationProperties(prefix = "mqtt")
+@ConfigurationProperties(prefix = "spring.mqtt")
 public class MqttProperties {
     private String url;
     private String username;
     private String password;
     private String clientId;
+    private String consumerClientId;
 }

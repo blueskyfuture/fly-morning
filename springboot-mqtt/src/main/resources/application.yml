@@ -1,5 +1,22 @@
-mqtt:
-  url: tcp://179.144.211.128:1883
-  username: admin
-  password: public
-  clientId: mqtt-sender
+spring:
+  application:
+    name:mqtt-server
+  mqtt:
+    url: tcp://192.164.211.128:1883
+    username: admin
+    password: public
+    client:
+      id: mqtt-sender
+    clientId: mqtt-sender-client01
+    consumerClientId: mqtt-consumer
+    default:
+      topic: topic01
+    completionTimeout: 3000
+    sender:
+      count: 10
+  thread:
+    pool:
+      corePoolSize: 3
+      maxPoolSize: 10
+      keepAliveTime: 30
+      queueCapacity: 1000

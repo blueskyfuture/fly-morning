@@ -19,8 +19,9 @@ import java.util.concurrent.ScheduledExecutorService;
  */
 public class ClientMQTT {
 
-    public static final String HOST = "tcp://179.144.211.128:1883";
-    public static final String TOPIC1 = "pos_message_all";
+    public static final String HOST = "tcp://192.164.211.128:1883";
+    public static final String TOPIC = "pos_message_all";
+    public static final String TOPIC1 = "topic01";
     private static final String clientid = "client11";
     private MqttClient client;
     private MqttConnectOptions options;
@@ -59,6 +60,7 @@ public class ClientMQTT {
             client.connect(options);
             //订阅消息
             int[] Qos = {1};
+//            String[] topic1 = {TOPIC,TOPIC1};
             String[] topic1 = {TOPIC1};
             client.subscribe(topic1, Qos);
 

@@ -1,4 +1,4 @@
-package com.bluesky.mqtt.config;
+package com.bluesky.mqtt_.config1;
 
 
 import lombok.extern.slf4j.Slf4j;
