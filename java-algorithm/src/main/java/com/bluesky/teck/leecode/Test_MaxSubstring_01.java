@@ -28,6 +28,7 @@ public class Test_MaxSubstring_01 {
         for(int i=0; i<min.length(); i++){
             for(int begin=0, end=min.length()-i; end<=min.length(); begin++, end++){
                 current = min.substring(begin, end);
+                System.out.println("bein=" + begin + ";end =" + end +";i=" + i + "; current==" + current);
                 if(max.contains(current)){
                     return current;
                 }

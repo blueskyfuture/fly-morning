@@ -1,0 +1,63 @@
+package com.bluesky.netty.client;
+
+import java.net.InetSocketAddress;
+import io.netty.bootstrap.Bootstrap;
+import io.netty.channel.ChannelFuture;
+import io.netty.channel.ChannelInitializer;
+import io.netty.channel.EventLoopGroup;
+import io.netty.channel.nio.NioEventLoopGroup;
+import io.netty.channel.socket.SocketChannel;
+import io.netty.channel.socket.nio.NioSocketChannel;
+
+/**
+ * 参考https://www.w3cschool.cn/essential_netty_in_action/essential_netty_in_action-y24z289f.html
+ */
+public class EchoClient {
+
+    private final String host;
+    private final int port;
+
+    public EchoClient(String host, int port) {
+        this.host = host;
+        this.port = port;
+    }
+
+    public static void main(String[] args) throws Exception {
+        //args = new String[]{"127.0.0.1","20081"};
+//        args = new String[]{"192.168.211.128","20081"};//20081，20082
+        args = new String[]{"192.168.211.128","30001"};
+
+        if (args.length != 2) {
+            System.err.println(
+                    "Usage: " + EchoClient.class.getSimpleName() +
+                            " <host> <port>");
+            return;
+        }
+        String host = args[0];
+        int port = Integer.parseInt(args[1]);
+        new EchoClient(host, port).start();
+    }
+
+    public void start() throws Exception {
+        EventLoopGroup group = new NioEventLoopGroup();
+        try {
+            Bootstrap b = new Bootstrap();
+            b.group(group)
+                    .channel(NioSocketChannel.class)
+                    .remoteAddress(new InetSocketAddress(host, port))
+                    .handler(new ChannelInitializer<SocketChannel>() {
+
+                        @Override
+                        protected void initChannel(SocketChannel ch) throws Exception {
+                            ch.pipeline().addLast(new EchoClientHandler());
+                        }
+
+                    });
+            ChannelFuture f = b.connect().sync();
+            f.channel().closeFuture().sync();
+        } finally {
+            group.shutdownGracefully().sync();
+        }
+    }
+
+}

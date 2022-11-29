@@ -2,7 +2,7 @@ package com.bluesky.teck.leecode;
 
 public class NC3_FintRingEnter {
       //Definition for singly-linked list.
-      class ListNode {
+      static class ListNode {
           int val;
           ListNode next;
           ListNode(int x) {
@@ -11,8 +11,7 @@ public class NC3_FintRingEnter {
           }
       }
      
-    public class Solution {
-        public ListNode detectCycle(ListNode head) {
+        public static ListNode detectCycle(ListNode head) {
             ListNode p1 = head;
             ListNode p2 = head;
             while (p2 != null && p2.next != null) {
@@ -32,5 +31,21 @@ public class NC3_FintRingEnter {
 
             return p1;
         }
-    }
+
+        public static void main(String[] args) {
+            ListNode head = new ListNode(0);
+            ListNode tmp = head;
+            ListNode enter = null;
+            for (int i = 1; i <= 5; i++) {
+                ListNode node = new ListNode(i);
+                tmp.next = node;
+                tmp = node;
+                if(i == 3)
+                    enter = node;
+            }
+            tmp.next = enter;
+            detectCycle(head);
+        }
+
+
 }

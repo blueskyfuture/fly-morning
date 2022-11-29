@@ -11,8 +11,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Date;
 
-@RestController
-@RequestMapping("api/redisson")
+//@RestController
+//@RequestMapping("api/redisson")
 @Slf4j
 public class MyRedissonController {
     @Autowired

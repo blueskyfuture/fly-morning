@@ -19,6 +19,9 @@
       <module>java-md</module>
       <module>springboot-kafka</module>
     <module>springboot-mqtt</module>
+      <module>java-netty</module>
+      <module>java-Reactor</module>
+      <module>study202211</module>
   </modules>
   <packaging>pom</packaging>
 

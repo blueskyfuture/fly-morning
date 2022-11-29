@@ -1,5 +1,8 @@
 package com.bluesky.teck.leecode;
 
+/**
+ * 采用该方式
+ */
 public class Test_MaxSubstring_02 {
 
     // 求解两个字符号的最长公共子串
@@ -56,7 +59,7 @@ public class Test_MaxSubstring_02 {
 
     public static void main(String[] args) {
         String str1 = "bab";
-        String str2 = "caba";
+        String str2 = "cabab";
         String result = Test_MaxSubstring_02.maxSubstring(str1, str2);
         System.out.println(result);
     }
