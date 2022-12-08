@@ -17,10 +17,44 @@ package com.t.suanfa;
 public class BM93_MaxArea {
 
     public static void main(String[] args) {
-        int[] arr = {1,7,3,2,4,5,8,2,7};
-        int area = maxArea1(arr);
+        //int[] arr = {1,7,3,2,4,5,8,2,7};
+        int[] arr = {1,10,3,2,4,5,20,2,7};
+        int area = maxArea2(arr);
         System.out.println("area:" + area);
     }
+
+    private static int maxArea2(int[] arr) {
+        if(arr.length < 2)
+            return 0;
+
+        int left = 0;
+        int right = arr.length - 1;
+        int result = 0;
+        while (left < right){
+            int cur = Math.min(arr[left],arr[right]) * (right - left);
+            result = cur > result ? cur : result;
+            if(arr[left] > arr[right])
+                right --;
+            else
+                left ++;
+        }
+        return result;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     private static int maxArea1(int[] arr) {
         if(arr.length < 2)

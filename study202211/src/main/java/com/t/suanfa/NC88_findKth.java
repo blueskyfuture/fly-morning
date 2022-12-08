@@ -30,11 +30,43 @@ public class NC88_findKth {
 
     public static void main(String[] args) {
         //int[] arr = {11,3,4,5,7,1,2,9,0,1};
-        int[] arr = {10,10,9,9,8,7,5,6,4,3,4,2};
+        int[] arr = {22,1,10,10,9,9,8,7,5,6,4,3,4,2};
         NC88_findKth test = new NC88_findKth();
-        int kth = test.findKth1(arr, arr.length, 3);
+        int kth = test.findKth2(arr, arr.length, 6);
         System.out.println(kth);
     }
+
+    private int findKth2(int[] arr, int length, int i) {
+        PriorityQueue<Integer> queue = new PriorityQueue<>(3);
+        for (int ele : arr) {
+            if(i>queue.size())
+                queue.add(ele);
+            else {
+                if(ele > queue.peek()){
+                    queue.poll();
+                    queue.add(ele);
+                }
+            }
+
+        }
+        System.out.println(queue.peek());
+        return queue.peek();
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     private int findKth1(int[] arr, int length, int i) {
         PriorityQueue<Integer> queue = new PriorityQueue<>();

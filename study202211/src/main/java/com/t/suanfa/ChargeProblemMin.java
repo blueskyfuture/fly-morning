@@ -11,7 +11,7 @@ import java.util.Arrays;
  *     假设只有 1 分、 2 分、五分、 1 角、二角、 五角、 1 元的硬币。
  *     在超市结账时，如果需要找零钱，收银员希望将最少的硬币数找给顾客。那么，给定需要找的零钱数目，如何求得最少的硬币数呢？
  */
-public class ChargeProblem {
+public class ChargeProblemMin {
 
     /**
      * 通过面值为 coinsValues[i] 的硬币对金额 chargeMoney 找零
@@ -29,8 +29,8 @@ public class ChargeProblem {
 
         //当找零金额不为 0 时，找零硬币种类不可为 0
         for(int i = 0; i <= chargeMoney; i++)
-            chargeOptimalSolution[0][i] = Integer.MAX_VALUE;
-
+            chargeOptimalSolution[0][i] = 111;//Integer.MAX_VALUE;
+        printArr(chargeOptimalSolution);
         //money 找零金额; coinKind 硬币种类，用来表示第几种硬币
         for(int money = 1; money <=chargeMoney; money++){
             for(int coinKind = 1; coinKind <= coinsKinds; coinKind++){
@@ -44,6 +44,7 @@ public class ChargeProblem {
                 //不使用第 i(coinkind) 种硬币找零时需要的最小硬币数-- 递推 --
                 //使用第 i(coinkind) 种硬币时所需的最小硬币数-- 递推 --
                 int numberByCoinKind = chargeOptimalSolution[coinKind - 1][money];
+                //下面这个相加的意思是   使用该金额硬币时 = （金额-该币种金额）时的最小值 +1（1代表了加上该比重金额）；
                 int numberNotByCoinKind = chargeOptimalSolution[coinKind][money - coinsValues[coinKind-1]] + 1;
 
                 //逻辑判断硬币数目选其中较小的
@@ -56,6 +57,7 @@ public class ChargeProblem {
     }
 
     public static void main(String[] args) {
+        //printArr1();
         //初始化硬币种类数组
         //int[] coinsValues = {1,2,5,10,20,50,100};
         int[] coinsValues = {2,1,4};
@@ -67,4 +69,23 @@ public class ChargeProblem {
         System.out.println("给定找零金额" + chargeMoney
                 + ",收银员最少的找零硬币数为" + minCoinsNumber);
     }
+    
+    private static void printArr(int[][] arr){
+        System.out.println("arr:"+Arrays.deepToString(arr));
+    }
+
+    private static void printArr1(){
+        //第一种方式：
+        //int a[][]={{1,2,3},{4,5,6}};
+        int a[][] = new int[2][5];
+        System.out.println("a:"+Arrays.toString(a));
+        System.out.println("a:"+Arrays.deepToString(a));
+        System.out.println("a.length:"+a.length);
+        for (int i = 0; i < a.length; i++) {
+            System.out.println("a[" + i + "]:"+Arrays.toString(a[i]));
+
+        }
+    }
+
+
 }

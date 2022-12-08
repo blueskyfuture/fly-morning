@@ -51,7 +51,7 @@ package com.t.suanfa;
  * step 3：如果中间值大于右边的元素，说明此时往右是向上，向上一定能有波峰，那我们往右收缩区间。
  * step 4：最后区间收尾相遇的点一定就是波峰。
  */
-public class BM19_FindPeek {
+public class BM19_FindPeak {
 
     public static void main(String[] args) {
         //int[] nums = {82,76,21,18,35,64,60,47,65,15};

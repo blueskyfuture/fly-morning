@@ -10,9 +10,34 @@ public class QuickSort {
         System.out.println("array====" + Arrays.toString(arr));
         //quickSort(arr,0,arr.length-1);
 //        quickSort2(arr,0,arr.length-1);
-        quickSort7(arr, 0, arr.length -1 );
+        quickSort8(arr, 0, arr.length -1 );
         System.out.println("array after quick sort====" + Arrays.toString(arr));
     }
+
+    private static void quickSort8(int[] arr, int L, int R) {
+        if (L >= R)
+            return;
+        int left = L;
+        int right = R;
+        int pivot = arr[L];
+        while (left < right){
+            while (left < right && pivot <= arr[right]) {
+                right--;
+            }
+            if (left < right)
+                arr[left] = arr[right];
+            while (left < right && pivot >= arr[left])
+                left++;
+            if (left < right)
+                arr[right] = arr[left];
+            if (left >= right)
+                arr[left] = pivot;
+      }
+      quickSort8(arr,L,right-1);
+        quickSort8(arr,right+1,R);
+    }
+
+
 
     private static void quickSort7(int[] arr, int L, int R) {
         if(L>=R)
