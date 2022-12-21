@@ -18,9 +18,29 @@ public class BM8_NodeReserveLastN {
     public static void main(String[] args) {
         Node head = getNodeList();
         printNodeList(head);
-        Node reverse = reverse5(head,4,7);
+        Node reverse = reverse6(head,4,7);
         System.out.println("---------");
         printNodeList(reverse);
+    }
+
+    private static Node reverse6(Node head, int m, int n) {
+        Node dummpyNode = new Node();
+        dummpyNode.setVal(-1);
+        dummpyNode.setNext(head);
+        Node pre = head;
+        for (int i = 0; i < m-1; i++) {
+            pre = pre.getNext();
+        }
+        Node cur = pre.getNext();
+        Node curN = null;
+        for (int i = 0; i < n-m; i++) {
+            curN = cur.getNext();
+            cur.setNext(curN.getNext());
+            curN.setNext(pre.getNext());
+            pre.setNext(curN);
+        }
+
+        return dummpyNode.getNext();
     }
 
     private static Node reverse5(Node head, int m, int n) {

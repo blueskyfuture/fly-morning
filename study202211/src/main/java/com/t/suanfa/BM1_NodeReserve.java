@@ -11,9 +11,46 @@ public class BM1_NodeReserve {
     public static void main(String[] args) {
         Node head = getNodeList();
         printNodeList(head);
-        Node reverse = reverse5(head);
+        Node reverse = reverse7(head);
         System.out.println("---------");
         printNodeList(reverse);
+    }
+
+    private static Node reverse7(Node head) {
+        if(head == null || head.getNext() == null)
+            return head;
+        Node begin = null;
+        Node mid = head;
+        Node end = head.getNext();
+        while (true){
+            mid.setNext(begin);
+            if(end == null)
+                break;
+            begin = mid;
+            mid = end;
+            end = end.getNext();
+        }
+        return mid;
+    }
+
+    /**
+     * 自己练习
+     * @param head
+     * @return
+     */
+    private static Node reverse6(Node head) {
+        if(head == null || head.getNext()==null)
+            return head;
+        Node node = null;
+        Node front = head;
+        Node tmp;
+        while (front != null){
+            tmp = front.getNext();
+            front.setNext(node);
+            node = front;
+            front = tmp;
+        }
+        return node;
     }
 
     private static Node reverse5(Node head) {
@@ -165,11 +202,11 @@ public class BM1_NodeReserve {
      * 获取单向链表
      * @return
      */
-    private static Node getNodeList(){
+    static Node getNodeList(){
         Node head  = new Node();
         head.setVal(0);
         Node tmp = head;
-        for (int i = 1; i <=3 ; i++) {
+        for (int i = 1; i <=8 ; i++) {
             Node node = new Node();
             node.setVal(i);
             tmp.setNext(node);
@@ -183,7 +220,7 @@ public class BM1_NodeReserve {
      * 打印
      * @param head
      */
-    private static void printNodeList(Node head){
+    public static void printNodeList(Node head){
         List<Integer> list = new ArrayList<>();
         Node tmp = head;
         String result = "";

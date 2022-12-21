@@ -1,10 +1,9 @@
 package com.t.suanfa;
 
+/**
+ * 找环的入口
+ */
 public class NC3_FintRingEnter {
-
-     
-
-
         public static void main(String[] args) {
             ListNode head = new ListNode(0);
             ListNode tmp = head;
@@ -17,9 +16,29 @@ public class NC3_FintRingEnter {
                     enter = node;
             }
             tmp.next = enter;
-            ListNode listNode = detectCycle2(head);
+            ListNode listNode = detectCycle3(head);
             System.out.println(listNode.val);
         }
+
+    private static ListNode detectCycle3(ListNode head) {
+            ListNode slow = head;
+            ListNode fast = head;
+            while (fast.next != null && fast.next.next != null){
+                slow = slow.next;
+                fast = fast.next.next;
+                if(fast == slow){
+                    slow = head;
+                    while (slow != fast){
+                        slow = slow.next;
+                        fast = fast.next;
+                        if(fast == slow){
+                            return slow;
+                        }
+                    }
+                }
+            }
+            return null;
+    }
 
     private static ListNode detectCycle2(ListNode head) {
 //            if(head == null || head.next == null)
