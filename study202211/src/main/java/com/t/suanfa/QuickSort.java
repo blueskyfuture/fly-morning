@@ -10,9 +10,70 @@ public class QuickSort {
         System.out.println("array====" + Arrays.toString(arr));
         //quickSort(arr,0,arr.length-1);
 //        quickSort2(arr,0,arr.length-1);
-        quickSort8(arr, 0, arr.length -1 );
+        quickSort(arr, 0, arr.length -1 );
         System.out.println("array after quick sort====" + Arrays.toString(arr));
     }
+
+    //25, 25, 30, 40, 50, 55, 60, 65, 70, 80, 90, 93
+    //25, 25, 30, 40, 50, 55, 60, 65, 70, 80, 90, 93
+    private static void quickSort9(int[] arr, int L, int R) {
+        if(L >= R)
+            return;
+        int left = L;
+        int right = R;
+        int pivot = arr[L];
+        while (left < right){
+            while (left < right && arr[right] >= pivot){
+                right--;
+            }
+            if(left < right){
+                arr[left] = arr[right];
+                left++;
+            }
+            while (left < right && arr[left] <= pivot){
+                left ++;
+            }
+            if(left < right){
+                arr[right] = arr[left];
+                right--;
+            }
+
+        }
+        arr[left] = pivot;
+        quickSort9(arr,L,left-1);
+        quickSort9(arr,left+1,R);
+
+    }
+
+
+    private static void quickSort(int arr[], int L, int R) {
+        if(L >= R)
+            return;
+        int left = L, right = R;
+        int pivot = arr[left];
+        while (left < right){
+            while (left < right && pivot <= arr[right]){
+                right --;
+            }
+            if(left < right){
+                arr[left] = arr[right];
+            }
+            while (left < right && pivot >= arr[left]){
+                left ++;
+            }
+            if(left < right){
+                arr[right] = arr[left];
+            }
+
+            if(left >= right){
+                arr[left] = pivot;
+            }
+        }
+        quickSort(arr,L,right-1);
+        quickSort(arr,right+1,R);
+
+    }
+
 
     private static void quickSort8(int[] arr, int L, int R) {
         if (L >= R)
@@ -197,37 +258,10 @@ public class QuickSort {
             if(left >= right)
                 arr[left] = pivot;
         }
-        quickSort(arr,L,right-1);
-        quickSort(arr,right+1,R);
+        quickSort1(arr,L,right-1);
+        quickSort1(arr,right+1,R);
     }
 
 
-    private static void quickSort(int arr[], int L, int R) {
-        if(L >= R)
-            return;
-        int left = L, right = R;
-        int pivot = arr[left];
-        while (left < right){
-            while (left < right && pivot <= arr[right]){
-                right --;
-            }
-            if(left < right){
-                arr[left] = arr[right];
-            }
-            while (left < right && pivot >= arr[left]){
-                left ++;
-            }
-            if(left < right){
-                arr[right] = arr[left];
-            }
-
-            if(left >= right){
-                arr[left] = pivot;
-            }
-        }
-        quickSort(arr,L,right-1);
-        quickSort(arr,right+1,R);
-
-    }
 
 }

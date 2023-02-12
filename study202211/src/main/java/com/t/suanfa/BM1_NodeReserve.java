@@ -11,10 +11,36 @@ public class BM1_NodeReserve {
     public static void main(String[] args) {
         Node head = getNodeList();
         printNodeList(head);
-        Node reverse = reverse7(head);
+        Node reverse = reverse8(head);
         System.out.println("---------");
         printNodeList(reverse);
     }
+
+    private static Node reverse8(Node head) {
+        if(head == null || head.getNext() == null)
+            return head;
+        Node begin = null;
+        Node mid =head;
+        Node end = head.getNext();
+        while (true){
+            mid.setNext(begin);
+            if(end == null)
+                break;
+            begin = mid;
+            mid = end;
+            end = end.getNext();
+        }
+//        while (mid != null){
+//            mid.setNext(begin);
+//            begin = mid;
+//            if(end != null) {
+//                mid = end;
+//                end = end.getNext();
+//
+//            }
+        return mid;
+    }
+
 
     private static Node reverse7(Node head) {
         if(head == null || head.getNext() == null)

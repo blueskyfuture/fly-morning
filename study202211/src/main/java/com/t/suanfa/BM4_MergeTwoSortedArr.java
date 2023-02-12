@@ -17,8 +17,24 @@ public class BM4_MergeTwoSortedArr {
         int[] src1 = {1,4,6,9,11,15};
         int[] src2 = {2,3,7,10};
         // int[] dst = {1,2,3,4,6};
-        int[] result =  BM4_MergeTwoSortedArr.merge4(src1,src1.length,src2,src2.length);
+        int[] result =  BM4_MergeTwoSortedArr.merge5(src1,src1.length,src2,src2.length);
         System.out.println(Arrays.toString(result));
+    }
+
+    private static int[] merge5(int[] src1, int length1, int[] src2, int length2) {
+        int total = length1 + length2;
+        int[] res = new int[total];
+        int index = 0,index01 = 0, index02=0;
+        while (index01 < length1 && index02 < length2){
+            res[index++] = src1[index01] <= src2[index02] ? src1[index01++] : src2[index02++];
+        }
+        while (index01 < length1){
+            res[index++] = src1[index01++];
+        }
+        while (index02 < length2){
+            res[index++] = src2[index02++];
+        }
+        return res;
     }
 
 

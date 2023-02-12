@@ -16,9 +16,29 @@ public class NC3_FintRingEnter {
                     enter = node;
             }
             tmp.next = enter;
-            ListNode listNode = detectCycle3(head);
+            ListNode listNode = detectCycle4(head);
             System.out.println(listNode.val);
         }
+
+    private static ListNode detectCycle4(ListNode head) {
+            ListNode first = head;
+            ListNode sec = head;
+            while (first.next != null && sec.next.next != null){
+                first = first.next;
+                sec = sec.next.next;
+                if(first == sec) {
+                    first = head;
+                    while (first != sec){
+                        first = first.next;
+                        sec = sec.next;
+                        if(first == sec)
+                            return first;
+                    }
+                }
+            }
+
+            return null;
+    }
 
     private static ListNode detectCycle3(ListNode head) {
             ListNode slow = head;
@@ -40,6 +60,24 @@ public class NC3_FintRingEnter {
             return null;
     }
 
+
+    private static ListNode detectCycle41(ListNode head) {
+        ListNode first = head;
+        ListNode sec = head;
+        while (first != null && sec != null){
+            first = first.next;
+            sec = sec.next.next;
+            if(first == sec) {
+                first = head;
+                break;
+            }
+        }
+        while (first != sec){
+            first = first.next;
+            sec = sec.next;
+        }
+        return first;
+    }
     private static ListNode detectCycle2(ListNode head) {
 //            if(head == null || head.next == null)
 //                return null;
