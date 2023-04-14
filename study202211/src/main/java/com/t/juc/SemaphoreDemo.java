@@ -33,7 +33,7 @@ public class SemaphoreDemo {
             try {
                 semaphore.acquire(1);
                     System.out.println(Thread.currentThread().getName()  + "ok----");
-                    TimeUnit.MILLISECONDS.sleep(10* 1000);
+                    TimeUnit.MILLISECONDS.sleep(5* 1000);
             } catch (Exception e) {
                 e.printStackTrace();
             }finally {

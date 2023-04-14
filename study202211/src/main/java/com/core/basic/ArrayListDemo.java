@@ -1,6 +1,7 @@
 package com.core.basic;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 
@@ -10,6 +11,7 @@ public class ArrayListDemo {
     }
 
     private static void test01() {
+//        Collections.synchronizedList()
         List<Integer> list01 = new ArrayList<Integer>();
 
         List<String> list = new ArrayList<String>();

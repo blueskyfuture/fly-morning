@@ -32,9 +32,42 @@ public class Leecode2195_MinimalKSum {
         //int[] arr = {1,4,25,10,25};
         int[] arr = {1,4};
         int k = 10;
-        long result = minimalKSum(arr,k);
-        System.out.println("result== " + result);
+        long result1 = minimalKSum(arr,k);
+        long result2 = minimalKSum_2(arr,k);
+        System.out.println("result1== " + result1);
+        System.out.println("result2== " + result2);
+    }
 
+    private static long minimalKSum_2(int[] arr, int k) {
+        Arrays.sort(arr);
+        //添加数求和结果
+        int sum = 0;
+        //开始计算
+        int begin = 1;
+        //已经添加了几个数
+        int s = 0;
+        for (int i = 0; i < arr.length; i++) {
+            //已添加够了
+            if(k == s)
+                break;
+            int cur = arr[i];
+            while (begin < cur){
+                if(k > s){
+                    sum = sum + begin;
+                    begin ++;
+                    s ++;
+                }else {
+                    break;
+                }
+            }
+            begin = cur + 1;
+        }
+        while (k > s){
+            sum = sum + begin;
+            begin ++;
+            s ++;
+        }
+        return sum;
     }
 
     public static long minimalKSum(int[] nums, int k) {

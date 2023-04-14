@@ -18,11 +18,65 @@ public class BM8_NodeReserveLastN {
     public static void main(String[] args) {
         Node head = getNodeList();
         printNodeList(head);
-        Node reverse = reverse7(head,4,7);
+        Node reverse = reverse9(head,4,7);
         System.out.println("---------");
         printNodeList(reverse);
     }
 
+    private static Node reverse9(Node head, int m, int n) {
+        Node dummy = new Node();
+        dummy.setNext(head);
+        Node pre = dummy;
+        for (int i = 1; i < m; i++) {
+            pre = pre.getNext();
+        }
+        Node mid = pre.getNext();
+        Node end = null;
+        for (int i = 0; i < n-m; i++) {
+            end = mid.getNext();
+            mid.setNext(end.getNext());
+            end.setNext(pre.getNext());
+            pre.setNext(end);
+        }
+        return dummy.getNext();
+    }
+
+    /**
+     * 0309
+     * result:->0->1->2->3->4->5->6->7->8->9->10
+     * result:->0->1->2->6->5->4->3->7->8->9->10
+     * @param head
+     * @param m
+     * @param n
+     * @return
+     */
+    private static Node reverse8(Node head, int m, int n) {
+        Node dummp = new Node();
+        dummp.setNext(head);
+        Node begin = dummp.getNext();
+        Node mid = null;
+        Node end = null;
+        for (int i = 1; i < m; i++) {
+            begin = begin.getNext();
+        }
+        mid = begin.getNext();
+        for (int i = 0; i < n-m; i++) {
+            end = mid.getNext();
+            mid.setNext(end.getNext());
+            end.setNext(begin.getNext());
+            begin.setNext(end);
+        }
+        return dummp.getNext();
+    }
+
+    /**
+     * result:->0->1->2->3->4->5->6->7->8->9->10
+     * result:->0->1->2->3->7->6->5->4->8->9->10
+     * @param head
+     * @param m
+     * @param n
+     * @return
+     */
     private static Node reverse7(Node head, int m, int n) {
         Node dummy = new Node();
         dummy.setNext(head);

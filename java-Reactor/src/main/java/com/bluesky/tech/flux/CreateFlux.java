@@ -19,7 +19,21 @@ public class CreateFlux {
 //        createFlux.generate();
 //        createFlux.generate2();
 //        createFlux.create();
-        createFlux.bufferTest();
+//        createFlux.bufferTest();
+        createFlux.test();
+    }
+
+
+
+    public void test() {
+        Flux.create((t) -> {
+            t.next("create");
+            t.next("create1");
+
+        }).subscribe(st->{
+            System.out.println(st);
+        });
+
     }
 
     /**
@@ -123,5 +137,7 @@ public class CreateFlux {
 
 
     }
+
+
 
 }

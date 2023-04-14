@@ -1,5 +1,7 @@
 package com.t.suanfa;
 
+import lombok.val;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
@@ -43,8 +45,49 @@ public class BM12_SingleListNodeSort {
     public static void main(String[] args) {
         ListNode head = getNodeList();
         printNodeList(head);
-        sortInList01(head);
+        sortInList02(head);
         printNodeList(head);
+    }
+
+    //->0->29->81->22->82->78->8->71->31->26->1
+    private static ListNode sortInList02(ListNode head) {
+        if(head == null || head.next == null)
+            return head;
+
+
+//        ListNode fast = head;
+        ListNode fast = head.next;
+        ListNode slow = head;
+        while (fast != null && fast.next != null){
+            slow = slow.next;
+            fast = fast.next.next;
+        }
+        ListNode tmp = slow.next;
+        slow.next = null;
+        ListNode left = sortInList02(head);
+        ListNode right = sortInList02(tmp);
+
+        ListNode pre = null;
+        ListNode result = new ListNode(-1);
+        pre = result;
+        while (left != null && right != null){
+            ListNode next = null;
+            if(left.val <= right.val){
+                next = left;
+                left = left.next;
+            }else{
+                next = right;
+                right = right.next;
+            }
+            result.next = next;
+            result = result.next;
+        }
+
+        //result.next = left.next != null ? left : right;
+        result.next = left != null ? left : right;
+
+
+        return pre.next;
     }
 
     private static ListNode sortInList01(ListNode head) {

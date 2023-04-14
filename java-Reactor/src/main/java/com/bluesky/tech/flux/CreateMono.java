@@ -5,6 +5,8 @@ import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.Optional;
 import java.util.Random;
+import java.util.concurrent.Flow;
+
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
@@ -14,6 +16,7 @@ import reactor.core.publisher.Mono;
 public class CreateMono {
 
     public static void main(String[] args) {
+        Flow flow = null;
         CreateMono createMono = new CreateMono();
         createMono.createMethod();
     }
